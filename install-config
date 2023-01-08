@@ -1,17 +1,17 @@
 apiVersion: v1
 baseDomain: xxxx                                     ## Domain name 
 compute:
-- architecture: amd64
+- architecture: amd64                                 ## You can update based on Arch 
   hyperthreading: Enabled
-  name: worker
+  name: worker                                        ## worker node name 
   platform: {}
-  replicas: 3
+  replicas: 3                                         ## number of worker nodes
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
-  name: master
+  name: master                                        ## master node name 
   platform: {}
-  replicas: 3
+  replicas: 3                                         ## number of master nodes
 metadata:
   creationTimestamp: null
   name: ocp4                                          ## Cluster name 
@@ -26,19 +26,19 @@ networking:
   - 172.30.0.0/16                                     #### Incase any confilict with your existing network you can update
 platform:
   vsphere:
-    apiVIP: 172.90.0.30                               ##api VIP 
-    cluster: Mgmt
-    datacenter: DC-HYD
-    defaultDatastore: Disk1
+    apiVIP: 172.90.0.30                              ##api VIP  
+    cluster: Mgmt                                    ##vCenter Cluster Name 
+    datacenter: DC-HYD                               ##vCenter DataCenter Name
+    defaultDatastore: Disk1                          ##vCenter Datastore Name 
     folder: /DC-HYD/vm/ocp4                          ## Optional - If you want to deploy ocp cluster vm on specific folder 
     diskType: thin                                   ## By default Disk type is thick ,If your not specified disktype as thin .
     ingressVIP: 172.90.0.31                          ## ingress IP
-    network: dhcp-vlan15
-    password: xxxx                        
-    username: administrator@vsphere.local
-    vCenter: xxxx
+    network: dhcp-vlan15                             ## vcenter network port group name 
+    password: xxxx                                      ##vcenter Password
+    username: administrator@vsphere.local               ##vcenter Username
+    vCenter: xxxx                                      ##vcenter URL
 publish: External
-pullSecret:                                                      
-sshKey: 
+pullSecret:                                            ##Paster pullsecrcet key                                                      
+sshKey:                                                ## paste SSH KEY 
 
 
