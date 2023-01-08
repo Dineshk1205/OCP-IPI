@@ -1,0 +1,44 @@
+apiVersion: v1
+baseDomain: xxxx                                     ## Domain name 
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform: {}
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform: {}
+  replicas: 3
+metadata:
+  creationTimestamp: null
+  name: ocp4                                          ## Cluster name 
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14                               ## Incase any confilict with your existing network you can update
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16                                 ## Incase any confilict with your existing network you can update
+  networkType: OpenShiftSDN                           
+  serviceNetwork:
+  - 172.30.0.0/16                                     #### Incase any confilict with your existing network you can update
+platform:
+  vsphere:
+    apiVIP: 172.90.0.30                               ##api VIP 
+    cluster: Mgmt
+    datacenter: DC-HYD
+    defaultDatastore: Disk1
+    folder: /DC-HYD/vm/ocp4                          ## Optional - If you want to deploy ocp cluster vm on specific folder 
+    diskType: thin                                   ## By default Disk type is thick ,If your not specified disktype as thin .
+    ingressVIP: 172.90.0.31                          ## ingress IP
+    network: dhcp-vlan15
+    password: xxxx                        
+    username: administrator@vsphere.local
+    vCenter: xxxx
+publish: External
+pullSecret:                                                      
+sshKey: 
+
+
